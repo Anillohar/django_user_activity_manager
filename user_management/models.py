@@ -1,3 +1,4 @@
+import uuid
 from django.db import models
 from django.utils.timezone import pytz as tz
 from django.contrib.auth.models import AbstractUser
@@ -23,11 +24,18 @@ class UserActivity(models.Model):
     tz = models.CharField(choices=TIMEZONE_CHOICES, max_length=200, blank=False)
     activity_periods = models.ManyToManyField(ActivityPeriods)
 
-    class Meta:
-        verbose_name = 'User Activity'
-        verbose_name_plural = 'User Activities'
+    def save(self, *args, **kwargs):
+        if not self.id:
+            self.id = str(uuid.uuid4())
+            while UserActivity.objects.filter(id=self.id).count() > 0:
+                self.id = str(uuid.uuid4())
+        super(UserActivity, self).save(args, kwargs)
 
     def __str__(self):
         return self.user.real_name if self.user.real_name else self.user.username
+
+    class Meta:
+        verbose_name = 'User Activity'
+        verbose_name_plural = 'User Activities'
 
 
