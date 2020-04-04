@@ -1,12 +1,21 @@
+# import UUID for generating 16 digit hex string
 import uuid
+
 from django.db import models
 from django.utils.timezone import pytz as tz
+
+# Django's default user model
 from django.contrib.auth.models import AbstractUser
 
+# getting all available timezones from django timezone library
 TIMEZONE_CHOICES = zip(tz.all_timezones, tz.all_timezones)
 
 
 class ActivityPeriods(models.Model):
+    """
+    These are the periods of activity of a user, start_time denotes the starting time and
+    end_time denotes ending time of user session
+    """
     start_time = models.DateTimeField()
     end_time = models.DateTimeField()
 
@@ -16,6 +25,8 @@ class ActivityPeriods(models.Model):
 
 
 class User(AbstractUser):
+    """ We have override the django user model and added field slug which represents the unique id of a user
+    """
     slug = models.SlugField(max_length=250, blank=False, null=False)
     real_name = models.CharField(max_length=250, blank=False)
     timezone = models.CharField(choices=TIMEZONE_CHOICES, max_length=200, blank=False)
@@ -30,26 +41,3 @@ class User(AbstractUser):
 
     def __str__(self):
         return self.real_name if self.real_name else ''
-
-
-# class UserActivity(models.Model):
-#     id = models.SlugField(max_length=250, blank=False, null=False, primary_key=True)
-#     user = models.OneToOneField(User, on_delete=models.CASCADE)
-#     tz = models.CharField(choices=TIMEZONE_CHOICES, max_length=200, blank=False)
-#     activity_periods = models.ManyToManyField(ActivityPeriods)
-#
-#     def save(self, *args, **kwargs):
-#         if not self.id:
-#             self.id = str(uuid.uuid4())
-#             while UserActivity.objects.filter(id=self.id).count() > 0:
-#                 self.id = str(uuid.uuid4())
-#         super(UserActivity, self).save(args, kwargs)
-#
-#     def __str__(self):
-#         return self.user.real_name if self.user.real_name else self.user.username
-#
-#     class Meta:
-#         verbose_name = 'User Activity'
-#         verbose_name_plural = 'User Activities'
-
-

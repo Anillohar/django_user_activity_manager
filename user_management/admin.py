@@ -1,8 +1,13 @@
+# importing base django admin
 from django.contrib import admin
-from user_management.models import User, ActivityPeriods
-# from user_management.models import User, UserActivity, ActivityPeriods
+
+# importing django's default user admin
 from django.contrib.auth.admin import UserAdmin as base_user_admin
+
+# for Internationalization
 from django.utils.translation import gettext_lazy as _
+
+from user_management.models import User, ActivityPeriods
 
 
 @admin.register(User)
@@ -22,12 +27,6 @@ class UserAdmin(base_user_admin):
             'fields': ('username', 'password1', 'password2'),
         }),
     )
-
-# @admin.register(UserActivity)
-# class UserActivityAdmin(admin.ModelAdmin):
-#     fields = ['user', 'tz', 'activity_periods']
-#     class Meta:
-#         model = UserActivity
 
 
 admin.site.register(ActivityPeriods)

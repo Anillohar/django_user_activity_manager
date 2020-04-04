@@ -1,10 +1,12 @@
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
+
+from user_management.models import User
 from api.serializers.UserManagementSerializers import UserSerializer
-from user_management.models import User, ActivityPeriods
 
 
 class MembersListViewset(ViewSet):
+    """To get all present users details from database"""
     model = User
     serializer = UserSerializer
     fields = ['id', 'real_name', 'tz', 'activity_periods']
