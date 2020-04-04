@@ -18,9 +18,11 @@ Python 3 is required to run this
 1. create database tables using<br>
     1. `python manage.py makemigrations`<br>
     2. `python manage.py migrate`
-2. To create dummy data run:<br>
+2. Configure static files:<br>
+    1. `python manage.py collectstatic`
+3. To create dummy data run:<br>
     1. `python manage.py auto_populate_database`
-3. Run the server using <br>
+4. Run the server using <br>
     1. `python manage.py runserver`
-4. Go to url:<br>
+5. Go to url:<br>
     `http://anillohar03.pythonanywhere.com/api/v1/get-members-list/` to see members list
