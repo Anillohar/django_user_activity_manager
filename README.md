@@ -26,3 +26,15 @@ Python 3 is required to run this
     1. `python manage.py runserver`
 5. Go to url:<br>
     `http://anillohar03.pythonanywhere.com/api/v1/get-members-list/` to see members list
+    
+**What have been done?**
+1. Override django user model and maintain the user activity by tracking user 
+    start and end time from login and logout views.
+2. Use Credentials <br>
+    Url: 'http://anillohar03.pythonanywhere.com'<br>
+    Username: `test`<br>
+    Password: `Welcome@123`<br>
+    To sign in to admin console.
+3. Use <br>
+    Url: http://anillohar03.pythonanywhere.com/api/v1/get-members-list/<br>
+    to see all member activities
