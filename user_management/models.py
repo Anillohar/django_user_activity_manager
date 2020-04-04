@@ -17,7 +17,7 @@ class ActivityPeriods(models.Model):
     end_time denotes ending time of user session
     """
     start_time = models.DateTimeField()
-    end_time = models.DateTimeField()
+    end_time = models.DateTimeField(null=True, blank=True)
 
     class Meta:
         verbose_name = 'Activity Period'
