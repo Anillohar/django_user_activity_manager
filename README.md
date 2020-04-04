@@ -1,5 +1,6 @@
 # django_user_activity_manager
 Simple Repository which maintains the record of a user's activities in database.
+**http://anillohar03.pythonanywhere.com/**
 
 **INSTALLATION**:<br>
 Python 3 is required to run this
@@ -22,4 +23,4 @@ Python 3 is required to run this
 3. Run the server using <br>
     1. `python manage.py runserver`
 4. Go to url:<br>
-    `<hostname:port>/api/v1/get-members-list/` to see members list
+    `http://anillohar03.pythonanywhere.com/api/v1/get-members-list/` to see members list
